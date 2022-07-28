@@ -82,14 +82,13 @@ class ProductController extends Controller
      */
     public function update(ProductFormRequest $request, int $product_id)
     {
-        $validatedData = $request->validated();
         $product = Product::findOrFail($product_id);
 
         if ($product) {
             $product->update([
-                'name' => $validatedData['name'],
-                'description' => $validatedData['description'],
-                'price' => $validatedData['price']
+                'name' => $request['name'],
+                'description' => $request['description'],
+                'price' => $request['price']
             ]);
 
             if ($request->hasFile('image')) {

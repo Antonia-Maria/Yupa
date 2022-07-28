@@ -1,29 +1,28 @@
-@extends('layouts.admin')
 <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.0.1/min/dropzone.min.css" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.2.0/min/dropzone.min.js"></script>
-@section('content')
+<?php $__env->startSection('content'); ?>
 
     <div class="row">
         <div class="col-md-12">
             <div class="card-header">
                 <h3>Add Product
-                    <a href="{{ url('admin/products') }}" class="btn btn-danger btn-sm text-white float-end">BACK</a>
+                    <a href="<?php echo e(url('admin/products')); ?>" class="btn btn-danger btn-sm text-white float-end">BACK</a>
                 </h3>
             </div>
             <div class="card-body">
 
-                @if ($errors->any())
+                <?php if($errors->any()): ?>
                     <div class="alert alert-warning">
-                        @foreach($errors->all() as $error)
-                            <div>{{$error}}</div>
-                        @endforeach
+                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div><?php echo e($error); ?></div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </div>
-                @endif
-                <form action="{{ url('admin/products') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
+                <?php endif; ?>
+                <form action="<?php echo e(url('admin/products')); ?>" method="POST" enctype="multipart/form-data">
+                    <?php echo csrf_field(); ?>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                             <button class="nav-link active" id="home-tab" data-bs-toggle="tab"
@@ -71,4 +70,6 @@
 
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\Yupa\resources\views/admin/products/create.blade.php ENDPATH**/ ?>

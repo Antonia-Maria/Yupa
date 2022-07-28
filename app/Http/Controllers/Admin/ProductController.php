@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
+use App\Http\Requests\UpdateFormRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -80,15 +81,16 @@ class ProductController extends Controller
      * Update Product method.
      *
      */
-    public function update(ProductFormRequest $request, int $product_id)
+    public function update(UpdateFormRequest $request, int $product_id)
     {
+        $validatedData = $request->validated();
         $product = Product::findOrFail($product_id);
 
         if ($product) {
             $product->update([
-                'name' => $request['name'],
-                'description' => $request['description'],
-                'price' => $request['price']
+                'name' => $validatedData['name'],
+                'description' => $validatedData['description'],
+                'price' => $validatedData['price']
             ]);
 
             if ($request->hasFile('image')) {

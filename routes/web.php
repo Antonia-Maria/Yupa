@@ -16,7 +16,7 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('dashboard', [DashboardController::class, 'index']);
 
-    Route::controller(ProductController::class)->group(function () {
+    Route::controller(Admin\ProductController::class)->group(function () {
 
         Route::get('/products', 'index');
         Route::get('/products/create', 'create');

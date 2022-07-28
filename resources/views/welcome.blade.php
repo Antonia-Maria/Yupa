@@ -96,7 +96,7 @@
                 @endforelse
                 {{ $products->links() }}
 
-                <label>Results: {{$products->count()}} products</label>
+                <label>Products per page: {{$products->count()}} products</label>
             </div>
         </div>
     </div>

@@ -51,7 +51,7 @@
                             </div>
                             <div class="mb-3">
                                 <label>Product Price</label>
-                                <input type="number" step="0.01" name="price" value="{{$product->price}}" class="form-control"/>
+                                <input placeholder="0.00" type="number" step="0.01" name="price" value="{{$product->price}}" class="form-control"/>
                             </div>
                         </div>
                         <div class="mb-3">
